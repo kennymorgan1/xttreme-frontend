@@ -3,7 +3,15 @@ import { Routes } from '@angular/router';
 
 
 export const AuthLayoutRoutes: Routes = [
-  { path: 'login', component: LoginComponent }
+  {
+    path: 'login', component: LoginComponent
+  },
+  {
+    path: 'register', component: LoginComponent
+  },
+  {
+    path: 'forget-password', component: LoginComponent
+  }
 ];
 
 
