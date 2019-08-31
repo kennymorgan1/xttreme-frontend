@@ -1,1 +1,11 @@
-<p>dashboard-layout works!</p>
+<!-- Sidenav -->
+<app-navbar></app-navbar>
+  <!-- Top navbar -->
+<div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
+  <app-sidebar></app-sidebar>
+  <!-- Pages -->
+  <div class="m-grid__item m-grid__item--fluid m-wrapper">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+<app-footer></app-footer>
