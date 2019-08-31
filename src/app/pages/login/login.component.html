@@ -62,9 +62,15 @@
                 Enter your details to create your account:
               </div>
             </div>
-            <form class="m-login__form m-form" action="">
+            <form class="m-login__form m-form" role="form" [formGroup]="registerForm" (ngSubmit)="register()">
               <div class="form-group m-form__group">
-                <input class="form-control m-input" type="text" placeholder="Fullname" name="fullname">
+                <input class="form-control m-input" type="text" placeholder="First Name" name="firstname" formControlName="firstName">
+                <div class="m-alert m-alert--outline alert alert-'+i+' alert-dismissible" role="alert" *ngIf="firstName.invalid && firstName.touched">
+                  <span *ngIf="firstName.errors.required">First Name is required</span>
+                  <span *ngIf="firstName.errors.maxlength">Maximum characters is 30</span>
+                  <span *ngIf="firstName.errors.minlength">Minimum characters is 3</span>
+                  <span *ngIf="firstName.errors.pattern">Invalid characters only</span>
+                </div>
               </div>
               <div class="form-group m-form__group">
                 <input class="form-control m-input" type="text" placeholder="Email" name="email" autocomplete="off">
