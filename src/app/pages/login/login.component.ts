@@ -7,14 +7,13 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  authType: String = '';
+  authType = '';
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.url.subscribe(data => {
       this.authType = data[data.length - 1].path;
-      console.log(this.authType);
     });
   }
 
