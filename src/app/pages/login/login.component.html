@@ -16,12 +16,19 @@
                 Sign In To Admin
               </h3>
             </div>
-            <form class="m-login__form m-form" action="">
+            <form class="m-login__form m-form" role="form" [formGroup]="loginForm" (ngSubmit)="login()">
               <div class="form-group m-form__group">
-                <input class="form-control m-input"   type="text" placeholder="Email" name="email" autocomplete="off">
+                <input formControlName="loginEmail" class="form-control m-input"   type="email" placeholder="Email" name="email" autocomplete="off">
+                <div class="m-alert m-alert--outline alert alert-'+i+' alert-dismissible" role="alert" *ngIf="loginEmail.invalid && loginEmail.touched">
+                  <span *ngIf="loginEmail.errors.required">Email Address is required</span>
+                  <span *ngIf="loginEmail.errors.email">Invalid Email Address</span>
+                </div>
               </div>
               <div class="form-group m-form__group">
-                <input class="form-control m-input m-login__form-input--last" type="password" placeholder="Password" name="password">
+                <input formControlName="loginPassword" class="form-control m-input m-login__form-input--last" type="password" placeholder="Password" name="password">
+                <div class="m-alert m-alert--outline alert alert-'+i+' alert-dismissible" role="alert" *ngIf="loginPassword.invalid && loginPassword.touched">
+                  <span *ngIf="loginPassword.errors.required">Password  is required</span>
+                </div>
               </div>
               <div class="row m-login__form-sub">
                 <div class="col m--align-left m-login__form-left">
@@ -38,7 +45,7 @@
                 </div>
               </div>
               <div class="m-login__form-action">
-                <button id="m_login_signin_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air  m-login__btn">
+                <button id="m_login_signin_submit" type="submit" [disabled]="getDisableState" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air  m-login__btn">
                   Sign In
                 </button>
               </div>
@@ -49,6 +56,7 @@
               </span>
               &nbsp;&nbsp;
               <a [routerLink]="['/register']" id="m_login_signup" class="m-link m-link--light m-login__account-link">
+                <i *ngIf="disableBtn" class="fa fa-spinner fa-spin"></i>
                 Sign Up
               </a>
             </div>
@@ -62,18 +70,38 @@
                 Enter your details to create your account:
               </div>
             </div>
-            <form class="m-login__form m-form" action="">
+            <!-- <form class="m-login__form m-form">
               <div class="form-group m-form__group">
                 <input class="form-control m-input" type="text" placeholder="Fullname" name="fullname">
               </div>
               <div class="form-group m-form__group">
-                <input class="form-control m-input" type="text" placeholder="Email" name="email" autocomplete="off">
+                <input class="form-control m-input" type="text" placeholder="Last Name" name="lastname" formControlName="lastName">
+                <div class="m-alert m-alert--outline alert alert-'+i+' alert-dismissible" role="alert" *ngIf="lastName.invalid && lastName.touched">
+                  <span *ngIf="lastName.errors.required">Last Name is required</span>
+                  <span *ngIf="lastName.errors.maxlength">Maximum characters is 30</span>
+                  <span *ngIf="lastName.errors.minlength">Minimum characters is 3</span>
+                  <span *ngIf="lastName.errors.pattern">Invalid characters only</span>
+                </div>
               </div>
               <div class="form-group m-form__group">
-                <input class="form-control m-input" type="password" placeholder="Password" name="password">
+                <input class="form-control m-input" type="text" placeholder="Email" name="email" formControlName="email" autocomplete="off">
+                <div class="m-alert m-alert--outline alert alert-'+i+' alert-dismissible" role="alert" *ngIf="email.invalid && email.touched">
+                  <span *ngIf="email.errors.required">Email Address is required</span>
+                  <span *ngIf="email.errors.email">Invalid Email Address</span>
+                </div>
+              </div>
+              <div class="form-group m-form__group">
+                <input class="form-control m-input" type="password" placeholder="Password" name="password" formControlName="password">
+                <div class="m-alert m-alert--outline alert alert-'+i+' alert-dismissible" role="alert" *ngIf="password.invalid && password.touched">
+                  <span *ngIf="password.errors.required">Password  is required</span>
+                </div>
               </div>
               <div class="form-group m-form__group">
                 <input class="form-control m-input m-login__form-input--last" type="password" placeholder="Confirm Password" name="rpassword">
+                <div class="m-alert m-alert--outline alert alert-'+i+' alert-dismissible" role="alert" *ngIf="confirmPassword.invalid && confirmPassword.touched">
+                  <span *ngIf="confirmPassword.errors?.required">Confirm Password is required</span>
+                  <span *ngIf="confirmPassword.errors?.equalTo">Password does not match </span>
+                </div>
               </div>
               <div class="row form-group m-form__group m-login__form-sub">
                 <div class="col m--align-left">
@@ -90,7 +118,8 @@
                 </div>
               </div>
               <div class="m-login__form-action">
-                <button id="m_login_signup_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air  m-login__btn">
+                <button type="submit"  [disabled]="getDisableState" id="m_login_signup_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air  m-login__btn">
+                    <i *ngIf="disableBtn" class="fa fa-spinner fa-spin"></i>
                   Sign Up
                 </button>
                 &nbsp;&nbsp;
@@ -98,7 +127,7 @@
                   Cancel
                 </button>
               </div>
-            </form>
+            </form> -->
           </div>
           <div *ngIf="authType == 'forget-password'">
             <div class="m-login__head">
@@ -109,7 +138,7 @@
                 Enter your email to reset your password:
               </div>
             </div>
-            <form class="m-login__form m-form" action="">
+            <!-- <form class="m-login__form m-form" action="">
               <div class="form-group m-form__group">
                 <input class="form-control m-input" type="text" placeholder="Email" name="email" id="m_email" autocomplete="off">
               </div>
@@ -122,7 +151,7 @@
                   Cancel
                 </button>
               </div>
-            </form>
+            </form> -->
           </div>
         </div>
       </div>
