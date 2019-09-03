@@ -1,3 +1,5 @@
+import { HttpClientModule } from '@angular/common/http';
+import { AuthServiceService } from './service/auth-service.service';
 import { ComponentsModule } from './components/components.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -20,12 +22,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
+    HttpClientModule,
     AppRoutingModule,
     ComponentsModule,
     RouterModule,
     NgbModule
   ],
-  providers: [],
+  providers: [
+    AuthServiceService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

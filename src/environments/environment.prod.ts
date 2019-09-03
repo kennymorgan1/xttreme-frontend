@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  baseUrl: 'https://xttreme-server.herokuapp.com/v1'
 };
