@@ -1,5 +1,6 @@
 import { LoginComponent } from './../../pages/login/login.component';
 import { Routes } from '@angular/router';
+import { ErrorComponent } from 'src/app/pages/error/error.component';
 
 
 export const AuthLayoutRoutes: Routes = [
@@ -11,6 +12,9 @@ export const AuthLayoutRoutes: Routes = [
   },
   {
     path: 'forget-password', component: LoginComponent
+  },
+  {
+    path: '**', component: ErrorComponent
   }
 ];
 
