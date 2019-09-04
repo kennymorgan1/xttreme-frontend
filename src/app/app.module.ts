@@ -11,6 +11,7 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ErrorComponent } from './pages/error/error.component';
 
 @NgModule({
   declarations: [

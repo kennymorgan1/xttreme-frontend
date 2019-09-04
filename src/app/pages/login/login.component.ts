@@ -17,12 +17,15 @@ export class LoginComponent implements OnInit {
   loginErr = false;
   public registerForm: FormGroup;
   public loginForm: FormGroup;
+  public forgetPasswordForm: FormGroup;
   isRegister = true;
   isLogin = false;
   errMessage;
   resendResponse;
   urlPath: string;
   disableBtn = false;
+  responseErr;
+  confirmEmailErr;
 
   constructor(private route: ActivatedRoute,
               private fb: FormBuilder,
@@ -35,11 +38,21 @@ export class LoginComponent implements OnInit {
     });
     this.loginFormField();
     this.registerFormFields();
+    this.forgetPasswordFormField();
   }
 
   goToLogin() {
     this.router.navigate(['/login']);
   }
+
+  forgetPasswordFormField() {
+    this.forgetPasswordForm = new FormGroup ({
+      forgetEmail: new FormControl('', [Validators.required, CustomValidators.email]),
+    });
+  }
+
+  get forgetEmail() { return this.forgetPasswordForm.get('forgetEmail'); }
+  get getDisableState() { return this.forgetPasswordForm.invalid || this.disableBtn; }
 
   loginFormField() {
     this.loginForm = new FormGroup ({
@@ -51,6 +64,26 @@ export class LoginComponent implements OnInit {
   get loginEmail() { return this.loginForm.get('loginEmail'); }
   get loginPassword() { return this.loginForm.get('loginPassword'); }
 
+  forgetPassword() {
+    if (this.forgetPasswordForm.valid) {
+        const email: string = this.forgetEmail.value;
+        this.getDisableBtn(true);
+        this.authSrv.forgetPassword(email).subscribe(
+          (data: any) => {
+            this.disableBtn = false;
+            this.getSweetAlert('Success', 'success',  'reset password link has been sent to your email', 'forget-succes');
+          }, err => {
+            if (err.code === 404) {
+              this.getSweetAlert('', 'warning',  err.msg || 'We were unable to find a user with that email', 'forget-fail');
+            } else {
+              this.responseErr = err.msg;
+            }
+            this.confirmEmailErr = err;
+            this.disableBtn = false;
+          });
+    }
+  }
+
   login() {
     if (this.loginForm.valid) {
       const payload = {
@@ -59,11 +92,16 @@ export class LoginComponent implements OnInit {
       };
       this.resetField();
       this.getDisableBtn(true);
-      this.authSrv.login(payload).subscribe((data: LoginInterface) => {
+      this.authSrv.login(payload).subscribe(
+        (data: LoginInterface) => {
         this.getDisableBtn(false);
         this.router.navigate(['/dashboard']);
       }, err => {
-        this.loginErr = true;
+        if (err.code === 412) {
+          this.getSweetAlert('', 'warning' , err.msg, 'login');
+        } else {
+          this.loginErr = true;
+        }
         this.getDisableBtn(false);
       });
     }
@@ -99,18 +137,15 @@ export class LoginComponent implements OnInit {
   get passwordMatch() {return this.password.value !== this.confirmPassword.value; }
 
   register() {
-    console.log(1);
-    console.log(this.registerForm.value);
     if (this.registerForm.valid) {
-      console.log(2);
       const payload = this.registerForm.value;
       this.resetField();
       this.getDisableBtn(true);
       this.authSrv.register(payload).subscribe(
-      (data: RegisterInterface) => {
+      (data: any) => {
         this.getDisableBtn(false);
         this.registerForm.reset();
-        // this.getSweetAlert('Success', 'success' , data.data.msg || 'A verification email has been sent', 'register');
+        this.getSweetAlert('Success', 'success' , data.data.msg || 'A verification email has been sent', 'register');
       }, err => {
         this.getDisableBtn(false);
         this.registerErr = err;
@@ -140,7 +175,15 @@ export class LoginComponent implements OnInit {
       reverseButtons: true
     }).then((result) => {
       if (result.value) {
-          this.router.navigate(['/register']);
+        if (route === 'login') {
+          this.authSrv.resend(this.loginEmail.value).subscribe(
+            (data: any) => {
+              this.resendResponse = data;
+            }, err => console.log(err)
+          );
+        } else {
+          this.router.navigate(['/referral/register']);
+        }
       } else if (
         result.dismiss === Swal.DismissReason.cancel
       ) {

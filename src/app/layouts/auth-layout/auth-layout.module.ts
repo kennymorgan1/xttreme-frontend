@@ -1,3 +1,4 @@
+import { ErrorComponent } from './../../pages/error/error.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -10,7 +11,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
+    ErrorComponent
   ],
   imports: [
     CommonModule,

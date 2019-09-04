@@ -126,7 +126,7 @@
               </div>
               <div class="m-login__form-action">
                 <button type="submit"  [disabled]="getDisableRegisterState" id="m_login_signup_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air  m-login__btn">
-                    <i *ngIf="disableBtn" class="fa fa-spinner fa-spin"></i>
+                  <i *ngIf="disableBtn" class="fa fa-spinner fa-spin"></i>
                   Sign Up
                 </button>
                 &nbsp;&nbsp;
@@ -145,12 +145,13 @@
                 Enter your email to reset your password:
               </div>
             </div>
-            <!-- <form class="m-login__form m-form" action="">
+            <form class="m-login__form m-form" role="form" [formGroup]="forgetPasswordForm" (ngSubmit)="forgetPassword()">
               <div class="form-group m-form__group">
-                <input class="form-control m-input" type="text" placeholder="Email" name="email" id="m_email" autocomplete="off">
+                <input class="form-control m-input" type="email" placeholder="Email" name="email" id="m_email" formControlName="forgetEmail" autocomplete="off">
               </div>
               <div class="m-login__form-action">
-                <button id="m_login_forget_password_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air m-login__btn m-login__btn--primary">
+                <button type="submit" [disabled]="getDisableState" id="m_login_forget_password_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air m-login__btn m-login__btn--primary">
+                  <i *ngIf="disableBtn" class="fa fa-spinner fa-spin"></i>
                   Request
                 </button>
                 &nbsp;&nbsp;
@@ -158,7 +159,7 @@
                   Cancel
                 </button>
               </div>
-            </form> -->
+            </form>
           </div>
         </div>
       </div>
