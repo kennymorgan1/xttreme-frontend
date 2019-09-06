@@ -11,13 +11,15 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ErrorComponent } from './pages/error/error.component';
+import { CreateCategoryComponent } from './pages/create-category/create-category.component';
+import { ItemsComponent } from './pages/items/items.component';
+import { CreateItemComponent } from './pages/create-item/create-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardLayoutComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
   ],
   imports: [
     BrowserModule,
