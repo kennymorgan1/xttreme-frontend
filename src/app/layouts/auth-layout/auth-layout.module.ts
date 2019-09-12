@@ -7,11 +7,13 @@ import { AuthLayoutRoutes } from './auth-layout-routing.module';
 import { LoginComponent } from './../../pages/login/login.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ConfirmationComponent } from 'src/app/pages/confirmation/confirmation.component';
 
 
 @NgModule({
   declarations: [
     LoginComponent,
+    ConfirmationComponent,
     ErrorComponent
   ],
   imports: [

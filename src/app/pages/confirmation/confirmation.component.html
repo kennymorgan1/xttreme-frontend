@@ -1,0 +1,66 @@
+
+<div class="m--skin- m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
+
+  <div class="m-grid m-grid--hor m-grid--root m-page">
+    <div class="m-grid__item m-grid__item--fluid m-grid m-grid--hor m-login m-login--singin m-login--2 m-login-2--skin-3" id="m_login" style="background-image: url(../../../assets/app/media/img//bg/bg-2.jpg);">
+      <div class="m-grid__item m-grid__item--fluid	m-login__wrapper">
+        <div class="m-login__container">
+          <div class="m-login__logo">
+            <a href="#">
+              <img src="../../../assets/app/media/img//logos/logo-1.png">
+            </a>
+          </div>
+          <div>
+            <form class="m-login__form m-form" role="form">
+              <div class="row" *ngIf="!response && !noResponseErr">
+                <div class="col-12 text-center">
+                  <i class="fa fa-spinner fa-spin fa-3x"></i>
+                </div>
+              </div>
+              <div class="row" *ngIf="noResponseErr && !response">
+                <div class="col-12 text-center text-danger">
+                  <h6>Sorry this operation could not be completed at this time. Please try again</h6>
+                </div>
+              </div>
+              <div class="row" *ngIf="response && !noResponseErr">
+                <div class="col-12 text-center" *ngIf="responseErr && !showresend">
+                  <i class="fa fa-exclamation-circle mb-2 text-warning fa-3x"></i>
+                  <h6>{{responseErr}}</h6>
+                  <button (click)="showResend()" id="m_login_forget_password_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air m-login__btn m-login__btn--primary">Click To Resend
+                    </button>
+                </div>
+
+                <div *ngIf="showresend" class="col-12 text-center">
+                  <div class="form-group m-form__group">
+                    <input [(ngModel)]="email" class="form-control" placeholder="email" type="email">
+                    <div class="text-danger errmessage" *ngIf="username.invalid && username.touched">
+                      <span *ngIf="username.errors.required">Username is required</span>
+                      <span *ngIf="username.errors.email">Invalid email address</span>
+                    </div>
+                  </div>
+                  <div class="col-md-12" >
+                    <button [disabled]="getSubmitState(emailfield)"
+                    (click)="resend()" id="m_login_forget_password_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air m-login__btn m-login__btn--primary">
+                      <i *ngIf="disableBtn" class="fa fa-spinner fa-spin"></i>  Submit
+                  </button>
+                  </div>
+                </div>
+
+                <div class="col-12 text-center" *ngIf="!responseErr && !showresend">
+                  <h6>Account has been verified. Please log in  </h6>
+                  <div class="m-login__form-action">
+                    <button (click)="login()" id="m_login_forget_password_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air m-login__btn m-login__btn--primary">Sign in
+                    </button>
+                  </div>
+                </div>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
