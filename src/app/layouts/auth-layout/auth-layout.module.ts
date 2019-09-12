@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 import { AuthLayoutRoutes } from './auth-layout-routing.module';
 import { LoginComponent } from './../../pages/login/login.component';
 import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ConfirmationComponent } from 'src/app/pages/confirmation/confirmation.component';
 
 
@@ -17,6 +17,7 @@ import { ConfirmationComponent } from 'src/app/pages/confirmation/confirmation.c
     ErrorComponent
   ],
   imports: [
+    FormsModule,
     CommonModule,
     ReactiveFormsModule,
     HttpClientModule,
