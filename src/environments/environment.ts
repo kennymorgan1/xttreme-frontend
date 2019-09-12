@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'https://xttreme-server.herokuapp.com/v1'
+  baseUrl: 'https://xttreme-api.herokuapp.com/v1'
 };
 
 /*
