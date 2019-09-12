@@ -32,10 +32,10 @@
 
                 <div *ngIf="showresend" class="col-12 text-center">
                   <div class="form-group m-form__group">
-                    <input [(ngModel)]="email" class="form-control" placeholder="email" type="email">
-                    <div class="text-danger errmessage" *ngIf="username.invalid && username.touched">
-                      <span *ngIf="username.errors.required">Username is required</span>
-                      <span *ngIf="username.errors.email">Invalid email address</span>
+                    <input #emailfield="ngModel" [(ngModel)]="email" class="form-control" placeholder="email" type="email">
+                    <div class="text-danger errmessage" *ngIf="emailfield.invalid && emailfield.touched">
+                      <span *ngIf="emailfield.errors.required">Username is required</span>
+                      <span *ngIf="emailfield.errors.email">Invalid email address</span>
                     </div>
                   </div>
                   <div class="col-md-12" >
