@@ -2,6 +2,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthServiceService } from './service/auth-service.service';
 import { ComponentsModule } from './components/components.module';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -11,9 +13,6 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CreateCategoryComponent } from './pages/create-category/create-category.component';
-import { ItemsComponent } from './pages/items/items.component';
-import { CreateItemComponent } from './pages/create-item/create-item.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +28,9 @@ import { CreateItemComponent } from './pages/create-item/create-item.component';
     AppRoutingModule,
     ComponentsModule,
     RouterModule,
-    NgbModule
+    NgbModule,
+    BrowserAnimationsModule,
+    MatCheckboxModule
   ],
   providers: [
     AuthServiceService
