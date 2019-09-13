@@ -10,3 +10,12 @@ export class LoginInterface {
   username: string;
   password: string;
 }
+
+export class User {
+  id: number;
+  email: string;
+  firstName: string;
+  lastName: string;
+  token: string;
+  roles?: string[];
+}
