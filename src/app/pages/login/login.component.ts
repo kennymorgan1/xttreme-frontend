@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   registerErr = false;
   loginErr = false;
   loginErrorMsg;
+  registerErrorMsg;
   public registerForm: FormGroup;
   public loginForm: FormGroup;
   public forgetPasswordForm: FormGroup;
@@ -74,7 +75,7 @@ export class LoginComponent implements OnInit {
             this.disableBtn = false;
             this.getSweetAlert('Success', 'success',  'reset password link has been sent to your email', 'forget-succes');
           }, err => {
-            if (err.code === 404) {
+            if (err.status === 404) {
               this.getSweetAlert('', 'warning',  err.msg || 'We were unable to find a user with that email', 'forget-fail');
             } else {
               this.responseErr = err.msg;
@@ -99,7 +100,6 @@ export class LoginComponent implements OnInit {
         this.getDisableBtn(false);
         this.router.navigate(['/dashboard']);
       }, err => {
-        console.log('this is error', err.error.data.msg);
         if (err.status === 400) {
           // this.getSweetAlert('', 'warning' , err.error.data.msg, 'login');
           this.loginErr = true;
@@ -151,7 +151,11 @@ export class LoginComponent implements OnInit {
         this.getSweetAlert('Success', 'success' , data.data.msg || 'A verification email has been sent', 'register');
       }, err => {
         this.getDisableBtn(false);
-        this.registerErr = err;
+        if (err.status === 400) {
+          // this.getSweetAlert('', 'warning' , err.error.data.msg, 'login');
+          this.registerErr = true;
+          this.registerErrorMsg = err.error.data.msg;
+        }
       }
     );
     }

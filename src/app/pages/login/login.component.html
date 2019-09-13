@@ -74,6 +74,9 @@
                 Enter your details to create your account:
               </div>
             </div>
+            <div class="mt-5 py-2 m-alert m-alert--outline alert alert-'+i+' alert-dismissible" role="alert" *ngIf="registerErr">
+              <button aria-label="Close" class="close ng-star-inserted" type="button"><span aria-hidden="true">×</span></button>{{registerErrorMsg}}
+            </div>
             <form class="m-login__form m-form" [formGroup]="registerForm" (ngSubmit)=register()>
               <div class="form-group m-form__group">
                 <input class="form-control m-input" type="text" placeholder="firstname" name="firstname" formControlName="firstName">
