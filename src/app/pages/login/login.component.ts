@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   authType = '';
   registerErr = false;
   loginErr = false;
+  loginErrorMsg;
   public registerForm: FormGroup;
   public loginForm: FormGroup;
   public forgetPasswordForm: FormGroup;
@@ -94,13 +95,15 @@ export class LoginComponent implements OnInit {
       this.getDisableBtn(true);
       this.authSrv.login(payload).subscribe(
         (data: LoginInterface) => {
+        console.log('this is tyhe data', data);
         this.getDisableBtn(false);
         this.router.navigate(['/dashboard']);
       }, err => {
-        if (err.code === 412) {
-          this.getSweetAlert('', 'warning' , err.msg, 'login');
-        } else {
+        console.log('this is error', err.error.data.msg);
+        if (err.status === 400) {
+          // this.getSweetAlert('', 'warning' , err.error.data.msg, 'login');
           this.loginErr = true;
+          this.loginErrorMsg = err.error.data.msg;
         }
         this.getDisableBtn(false);
       });
