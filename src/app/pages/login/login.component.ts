@@ -95,8 +95,7 @@ export class LoginComponent implements OnInit {
       this.resetField();
       this.getDisableBtn(true);
       this.authSrv.login(payload).subscribe(
-        (data: LoginInterface) => {
-        console.log('this is tyhe data', data);
+        (data: any) => {
         this.getDisableBtn(false);
         this.router.navigate(['/dashboard']);
       }, err => {

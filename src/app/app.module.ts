@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthServiceService } from './service/auth-service.service';
 import { ComponentsModule } from './components/components.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -13,6 +13,7 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { JwtInterceptor } from './core/interceptors/interceptor.jwt';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatCheckboxModule
   ],
   providers: [
-    AuthServiceService
+    AuthServiceService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })
