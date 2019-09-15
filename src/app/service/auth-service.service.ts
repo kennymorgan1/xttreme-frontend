@@ -22,7 +22,7 @@ export class AuthServiceService {
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  public get currentUserValue(): User {
+  public get currentUserValue(): any {
     return this.currentUserSubject.value;
   }
 
@@ -31,19 +31,7 @@ export class AuthServiceService {
   }
 
   login(data: LoginInterface) {
-    return this.http.post<any>(`${this.url}/login`, data)
-    .pipe(map(status => {
-      if (status && status.token) {
-        const user = new User();
-        user.firstName = status.secret.firstName;
-        user.lastName = status.secret.lastName;
-        user.email = status.secret.email;
-        user.id = user.id;
-        user.token = user.token;
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        this.currentUserSubject.next(user);
-      }
-    }));
+    return this.http.post<any>(`${this.url}/login`, data);
   }
 
   resend(email: string) {

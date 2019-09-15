@@ -47,6 +47,10 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  clearLoginErr() {
+    this.loginErr = false;
+  }
+
   forgetPasswordFormField() {
     this.forgetPasswordForm = new FormGroup ({
       forgetEmail: new FormControl('', [Validators.required, CustomValidators.email]),
@@ -97,8 +101,10 @@ export class LoginComponent implements OnInit {
       this.authSrv.login(payload).subscribe(
         (data: any) => {
         this.getDisableBtn(false);
+        localStorage.setItem('currentUser', JSON.stringify(data.data));
         this.router.navigate(['/dashboard']);
       }, err => {
+        console.log(err);
         if (err.status === 400) {
           // this.getSweetAlert('', 'warning' , err.error.data.msg, 'login');
           this.loginErr = true;
@@ -188,7 +194,7 @@ export class LoginComponent implements OnInit {
             }, err => console.log(err)
           );
         } else {
-          this.router.navigate(['/referral/register']);
+          this.router.navigate(['/register']);
         }
       } else if (
         result.dismiss === Swal.DismissReason.cancel

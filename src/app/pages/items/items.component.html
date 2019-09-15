@@ -176,7 +176,70 @@
               </div>
               <!--end: Search Form -->
   <!--begin: Datatable -->
-              <div class="m_datatable" id="local_data"></div>
+  <div class="text-center" *ngIf="itemList && (itemList.length === 0)">
+    <div class="loading-tab">
+        <i class="fa fa-frown-o fa-2x text-secondary"></i><br />
+        <h5 id="no-inflow-cat">No Cateory Yet</h5>
+    </div>
+  </div>
+  <div class="text-center" *ngIf="!(itemList)">
+      <div class="loading-tab">
+          <h5 id="pls-wait"><i class="fa fa-spinner fa-spin fa-1x"></i> Please Wait</h5>
+      </div>
+  </div>
+  <div *ngIf="itemList && itemList.length" class="m_datatable" id="local_data">
+    <!-- <form>
+      <div class="form-group form-inline">
+          Full text search: <input class="form-control ml-2" type="text" [formControl]="filter"/>
+      </div>
+    </form> -->
+
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Category</th>
+        <th scope="col">Reorder Level</th>
+        <th scope="col">Date Created</th>
+        <th scope="col">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of itemList">
+        <td scope="row">{{item.secret.name}}</td>
+        <td><ngb-highlight [result]="item.secret.description" [term]="filter.value"></ngb-highlight></td>
+        <td><ngb-highlight [result]="item.secret.category" [term]="filter.value"></ngb-highlight></td>
+        <td><ngb-highlight [result]="item.secret.reorderLevel" [term]="filter.value"></ngb-highlight></td>
+        <td><ngb-highlight [result]="item.secret.quantity" [term]="filter.value"></ngb-highlight></td>
+        <td><ngb-highlight [result]="item.createdAt | date" [term]="filter.value"></ngb-highlight></td>
+        <td>
+          <span class="action-span" style="width:50px">
+            <i style="cursor: pointer;"
+                class="icon fa fa-trash fa-1.5x text-danger"
+                placement="auto" ngbTooltip="Delete item"
+                id="deleteInflowCat"></i>
+
+            <i style="margin-left: 30px; cursor: pointer;"
+                class="icon fa fa-pencil fa-1.5x text-info"
+                placement="auto" ngbTooltip="Edit item" id="editInflowCategory"></i>
+          </span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <!-- <div class="d-flex justify-content-between p-2">
+      <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
+      </ngb-pagination>
+
+      <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
+        <option [ngValue]="2">2 items per page</option>
+        <option [ngValue]="4">4 items per page</option>
+        <option [ngValue]="6">6 items per page</option>
+      </select>
+    </div> -->
+  </div>
               <!--end: Datatable -->
             </div>
           </div>

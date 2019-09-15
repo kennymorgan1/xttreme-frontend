@@ -14,6 +14,9 @@ import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtInterceptor } from './core/interceptors/interceptor.jwt';
+import { DashboardService } from './service/dashboard.service';
+import { ToastrModule } from 'ng6-toastr-notifications';
+import { DecimalPipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -30,11 +33,14 @@ import { JwtInterceptor } from './core/interceptors/interceptor.jwt';
     ComponentsModule,
     RouterModule,
     NgbModule,
+    ToastrModule,
     BrowserAnimationsModule,
     MatCheckboxModule
   ],
   providers: [
     AuthServiceService,
+    DashboardService,
+    DecimalPipe,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
