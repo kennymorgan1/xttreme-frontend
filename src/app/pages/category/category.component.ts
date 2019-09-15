@@ -21,16 +21,16 @@ function search(text: string, pipe: PipeTransform, COUNTRIES): any[] {
   styleUrls: ['./category.component.scss']
 })
 export class CategoryComponent implements OnInit {
-  categoryList: Observable<any[]>;
+  categoryList: any[];
   filter = new FormControl('');
   tableValue: string;
   offset = 0;
   limit = 10;
   constructor(private service: DashboardService, pipe: DecimalPipe) {
-    this.categoryList = this.filter.valueChanges.pipe(
-      startWith(''),
-      map(text => search(text, pipe, this.categoryList))
-    );
+    // this.categoryList = this.filter.valueChanges.pipe(
+    //   startWith(''),
+    //   map(text => search(text, pipe, this.categoryList))
+    // );
    }
 
   ngOnInit() {
