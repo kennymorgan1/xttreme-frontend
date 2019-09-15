@@ -20,16 +20,16 @@ function search(text: string, pipe: PipeTransform, COUNTRIES): any[] {
   styleUrls: ['./items.component.scss']
 })
 export class ItemsComponent implements OnInit {
-  itemList: Observable<any[]>;
+  itemList: any[];
   filter = new FormControl('');
   tableValue: string;
   offset = 0;
   limit = 10;
   constructor(private service: DashboardService, pipe: DecimalPipe) {
-    this.itemList = this.filter.valueChanges.pipe(
-      startWith(''),
-      map(text => search(text, pipe, this.itemList))
-    );
+    // this.itemList = this.filter.valueChanges.pipe(
+    //   startWith(''),
+    //   map(text => search(text, pipe, this.itemList))
+    // );
    }
 
   ngOnInit() {
