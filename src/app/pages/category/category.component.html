@@ -146,15 +146,18 @@
                   <tr>
                     <th scope="col">Name</th>
                     <th scope="col">Description</th>
-                    <th scope="col">Date Created</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">Active</th>
+                    <th scope="col">Created at</th>
+                    <th scope="col">Created By</th>
                   </tr>
                   </thead>
                   <tbody>
                   <tr *ngFor="let category of categoryList">
                     <td scope="row">{{category.secret.name}}</td>
                     <td><ngb-highlight [result]="category.secret.description" [term]="filter.value"></ngb-highlight></td>
+                    <td><ngb-highlight [result]="category.active" [term]="filter.value"></ngb-highlight></td>
                     <td><ngb-highlight [result]="category.createdAt | date" [term]="filter.value"></ngb-highlight></td>
+                    <td><ngb-highlight [result]="category.userId" [term]="filter.value"></ngb-highlight></td>
                     <td>
                       <span class="action-span" style="width:50px">
                         <i style="cursor: pointer;"

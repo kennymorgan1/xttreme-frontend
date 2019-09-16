@@ -5,9 +5,9 @@
               <div class="m-portlet__head-caption">
                 <div class="m-portlet__head-title">
                   <h3 class="m-portlet__head-text">
-                    Categories
+                    Item
                     <small>
-                      where items fall under
+                      List of items
                     </small>
                   </h3>
                 </div>
@@ -179,7 +179,7 @@
   <div class="text-center" *ngIf="itemList && (itemList.length === 0)">
     <div class="loading-tab">
         <i class="fa fa-frown-o fa-2x text-secondary"></i><br />
-        <h5 id="no-inflow-cat">No Cateory Yet</h5>
+        <h5 id="no-inflow-cat">No Item Yet</h5>
     </div>
   </div>
   <div class="text-center" *ngIf="!(itemList)">
@@ -200,8 +200,12 @@
         <th scope="col">Name</th>
         <th scope="col">Description</th>
         <th scope="col">Category</th>
+        <th scope="col">Quantity</th>
         <th scope="col">Reorder Level</th>
-        <th scope="col">Date Created</th>
+        <th scope="col">Tag</th>
+        <th scope="col">Status</th>
+        <th scope="col">Created At</th>
+        <th scope="col">Created By</th>
         <th scope="col">Action</th>
       </tr>
       </thead>
@@ -209,10 +213,13 @@
       <tr *ngFor="let item of itemList">
         <td scope="row">{{item.secret.name}}</td>
         <td><ngb-highlight [result]="item.secret.description" [term]="filter.value"></ngb-highlight></td>
-        <td><ngb-highlight [result]="item.secret.category" [term]="filter.value"></ngb-highlight></td>
-        <td><ngb-highlight [result]="item.secret.reorderLevel" [term]="filter.value"></ngb-highlight></td>
+        <td><ngb-highlight [result]="item.category" [term]="filter.value"></ngb-highlight></td>
         <td><ngb-highlight [result]="item.secret.quantity" [term]="filter.value"></ngb-highlight></td>
+        <td><ngb-highlight [result]="item.secret.reorder_level" [term]="filter.value"></ngb-highlight></td>
+        <td><ngb-highlight [result]="item.tag" [term]="filter.value"></ngb-highlight></td>
+        <td>&#x263B; <ngb-highlight [result]="item.approval_status" [term]="filter.value" [ngClass]="(item.approval_status === 'pending') ? 'pending' : (item.approval_status === 'declined') ? 'declined' : 'approved'"></ngb-highlight></td>
         <td><ngb-highlight [result]="item.createdAt | date" [term]="filter.value"></ngb-highlight></td>
+        <td><ngb-highlight [result]="item.userId" [term]="filter.value"></ngb-highlight></td>
         <td>
           <span class="action-span" style="width:50px">
             <i style="cursor: pointer;"
