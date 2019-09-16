@@ -37,6 +37,15 @@ export class CategoryComponent implements OnInit {
     this.getCategories(this.offset, this.limit);
   }
 
+  status(category) {
+    return (category === true) ? 'active' : 'declined'
+    // if(category === true) {
+    //   return 'active';
+    // }else {
+    //   return 'declined';
+    // }
+  }
+
   getCategories(offset, limit) {
     this.service.listCategories(offset, limit).subscribe((data: any) => {
       if (data) {
@@ -51,3 +60,4 @@ export class CategoryComponent implements OnInit {
   }
 
 }
+

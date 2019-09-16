@@ -64,7 +64,7 @@ export class CreateItemComponent implements OnInit {
         category: this.category.value,
         quantity: this.quantity.value,
         tag: this.tag.value,
-        reorderLevel: this.reorderLevel.value
+        reorder_level: this.reorderLevel.value
       };
       this.service.createItem(payload).subscribe(
         (data: any) => {

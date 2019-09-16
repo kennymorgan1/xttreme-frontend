@@ -146,7 +146,7 @@
                   <tr>
                     <th scope="col">Name</th>
                     <th scope="col">Description</th>
-                    <th scope="col">Active</th>
+                    <th scope="col">Status</th>
                     <th scope="col">Created at</th>
                     <th scope="col">Created By</th>
                   </tr>
@@ -155,7 +155,7 @@
                   <tr *ngFor="let category of categoryList">
                     <td scope="row">{{category.secret.name}}</td>
                     <td><ngb-highlight [result]="category.secret.description" [term]="filter.value"></ngb-highlight></td>
-                    <td><ngb-highlight [result]="category.active" [term]="filter.value"></ngb-highlight></td>
+                    <td><ngb-highlight [result]="status(category.active)" [term]="filter.value" [ngClass]="(category.active === true) ? 'success' : (category.active === 'declined') ? 'declined' : 'approved'"></ngb-highlight></td>
                     <td><ngb-highlight [result]="category.createdAt | date" [term]="filter.value"></ngb-highlight></td>
                     <td><ngb-highlight [result]="category.userId" [term]="filter.value"></ngb-highlight></td>
                     <td>
