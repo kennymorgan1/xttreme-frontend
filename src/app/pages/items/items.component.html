@@ -213,7 +213,7 @@
       <tr *ngFor="let item of itemList">
         <td scope="row">{{item.secret.name}}</td>
         <td><ngb-highlight [result]="item.secret.description" [term]="filter.value"></ngb-highlight></td>
-        <td><ngb-highlight [result]="item.category" [term]="filter.value"></ngb-highlight></td>
+        <td><ngb-highlight [result]="item.category.secret.name" [term]="filter.value"></ngb-highlight></td>
         <td><ngb-highlight [result]="item.secret.quantity" [term]="filter.value"></ngb-highlight></td>
         <td><ngb-highlight [result]="item.secret.reorder_level" [term]="filter.value"></ngb-highlight></td>
         <td><ngb-highlight [result]="item.tag" [term]="filter.value"></ngb-highlight></td>
