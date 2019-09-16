@@ -1,0 +1,22 @@
+.success {
+    color: #ffffff;
+    background-color: #40bf80;
+    padding: .2rem 1rem;
+    font-weight: 400;
+}
+.declined {
+    color: red;
+    font-weight: 400;
+}
+.approved {
+    color: green;
+    font-weight: 400;
+}
+
+.table-striped td {
+    text-align: center !important;
+}
+
+.table-striped th {
+    text-align: center !important;
+}

@@ -200,8 +200,8 @@
         <th scope="col">Name</th>
         <th scope="col">Description</th>
         <th scope="col">Category</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">Reorder Level</th>
+        <th scope="col">Qty</th>
+        <th scope="col">Reorder Qty</th>
         <th scope="col">Tag</th>
         <th scope="col">Status</th>
         <th scope="col">Created At</th>
@@ -217,7 +217,7 @@
         <td><ngb-highlight [result]="item.secret.quantity" [term]="filter.value"></ngb-highlight></td>
         <td><ngb-highlight [result]="item.secret.reorder_level" [term]="filter.value"></ngb-highlight></td>
         <td><ngb-highlight [result]="item.tag" [term]="filter.value"></ngb-highlight></td>
-        <td>&#x263B; <ngb-highlight [result]="item.approval_status" [term]="filter.value" [ngClass]="(item.approval_status === 'pending') ? 'pending' : (item.approval_status === 'declined') ? 'declined' : 'approved'"></ngb-highlight></td>
+        <td><ngb-highlight [result]="item.approval_status" [term]="filter.value" [ngClass]="(item.approval_status === 'pending') ? 'primary' : (item.approval_status === 'declined') ? 'declined' : 'approved'"></ngb-highlight></td>
         <td><ngb-highlight [result]="item.createdAt | date" [term]="filter.value"></ngb-highlight></td>
         <td><ngb-highlight [result]="item.userId" [term]="filter.value"></ngb-highlight></td>
         <td>

@@ -1,5 +1,7 @@
-.pending {
-    color: #0066cc;
+.primary {
+    color: #ffffff;
+    background-color: #00c5dc;
+    padding: .2rem 1rem;
     font-weight: 400;
 }
 .declined {
@@ -9,4 +11,12 @@
 .approved {
     color: green;
     font-weight: 400;
+}
+
+.table-striped td {
+    text-align: center !important;
+}
+
+.table-striped th {
+    text-align: center !important;
 }
