@@ -46,7 +46,7 @@ export class AuthServiceService {
 
   forgetPassword(email: string) {
     const data = { email };
-    return this.http.post<any>(`${this.url}/send_link`, data);
+    return this.http.post<any>(`${this.url}/reset_password`, data);
   }
 
   resetPassword(password, id) {
