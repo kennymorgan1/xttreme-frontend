@@ -1,3 +1,4 @@
+import { UpdateCategoryComponent } from './../../pages/category/update-category/update-category.component';
 import { CategoryComponent } from './../../pages/category/category.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgModule } from '@angular/core';
@@ -20,6 +21,7 @@ import { ToastrModule } from 'ng6-toastr-notifications';
     DashboardComponent,
     CategoryComponent,
     CreateCategoryComponent,
+    UpdateCategoryComponent,
     ItemsComponent,
     CreateItemComponent,
   ],

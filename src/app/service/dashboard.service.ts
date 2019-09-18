@@ -30,6 +30,14 @@ export class DashboardService {
     return this.http.get<any>(`${this.url}/category`, this.appendAuthHeader());
   }
 
+  updateCategory(data: any, id: string) {
+    return this.http.put<any>(`${this.url}/category/${id}`, data, this.appendAuthHeader());
+  }
+
+  getOneCategory(id: string) {
+    return this.http.get<any>(`${this.url}/category/${id}`, this.appendAuthHeader());
+  }
+
   createItem(data: any) {
     return this.http.post<any>(`${this.url}/item`, data, this.appendAuthHeader());
   }

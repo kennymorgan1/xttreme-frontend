@@ -1,3 +1,4 @@
+import { UpdateCategoryComponent } from './../../pages/category/update-category/update-category.component';
 import { ItemsComponent } from './../../pages/items/items.component';
 import { CategoryComponent } from './../../pages/category/category.component';
 import { Routes, RouterModule } from '@angular/router';
@@ -15,6 +16,9 @@ export const DashboardLayoutRoutes: Routes = [
   },
   {
     path: 'create-category', component: CreateCategoryComponent
+  },
+  {
+    path: 'update-category/:categoryId', component: UpdateCategoryComponent
   },
   {
     path: 'items', component: ItemsComponent

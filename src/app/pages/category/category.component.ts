@@ -5,6 +5,7 @@ import { DecimalPipe } from '@angular/common';
 import { SelectorMatcher } from '@angular/compiler';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
 
 function search(text: string, pipe: PipeTransform, COUNTRIES): any[] {
   return COUNTRIES.filter(country => {
@@ -26,7 +27,7 @@ export class CategoryComponent implements OnInit {
   tableValue: string;
   offset = 0;
   limit = 10;
-  constructor(private service: DashboardService, pipe: DecimalPipe) {
+  constructor(private service: DashboardService, pipe: DecimalPipe, private route: Router) {
     // this.categoryList = this.filter.valueChanges.pipe(
     //   startWith(''),
     //   map(text => search(text, pipe, this.categoryList))
@@ -38,12 +39,16 @@ export class CategoryComponent implements OnInit {
   }
 
   status(category) {
-    return (category === true) ? 'active' : 'declined'
+    return (category === true) ? 'active' : 'declined';
     // if(category === true) {
     //   return 'active';
     // }else {
     //   return 'declined';
     // }
+  }
+
+  updateCategory(content) {
+    this.route.navigate(['/update-category', content._id]);
   }
 
   getCategories(offset, limit) {
