@@ -1,0 +1,61 @@
+        <div class="m-content">
+          <!--begin::Portlet-->
+          <div class="m-portlet">
+            <div class="m-portlet__head">
+              <div class="m-portlet__head-caption">
+                <div class="m-portlet__head-title">
+                  <h3 class="m-portlet__head-text">
+                    Update {{categoryName}}
+                  </h3>
+                </div>
+              </div>
+            </div>
+            <div class="text-center" *ngIf="!(categoryData)">
+              <div class="loading-tab">
+                  <h5 id="pls-wait"><i class="fa fa-spinner fa-spin fa-1x"></i> Please Wait</h5>
+              </div>
+          </div>
+            <!--begin::Form-->
+            <div *ngIf="categoryData">
+              <form #updateCategoryForm=ngForm (ngSubmit)="onSubmit(updateCategoryForm)" class="m-form m-form--fit m-form--label-align-right">
+                <div class="m-portlet__body">
+                  <div class="form-group m-form__group row">
+                    <label for="name" class="col-form-label col-lg-3 col-sm-12">
+                      Name
+                    </label>
+                    <div class="col-lg-7 col-md-7 col-sm-12">
+                      <input #name="ngModel" name="name" [(ngModel)]="this.categoryData.secret.name" type="text" class="form-control m-input" id="name" aria-describedby="emailHelp" placeholder="Enter category name">
+                    </div>
+                    <div class="invalid-feedback" role="alert" *ngIf="name.invalid && name.touched">
+                      <span *ngIf="name.errors.required">Name is required</span>
+                    </div>
+                  </div>
+                  <div class="form-group m-form__group row">
+                    <label for="description" class="col-form-label col-lg-3 col-sm-12">
+                      Description
+                    </label>
+                    <div class="col-lg-7 col-md-7 col-sm-12">
+                      <textarea #description="ngModel" name="description" [(ngModel)]="this.categoryData.secret.description" class="form-control m-input" name="description" id="description" cols="30" rows="10"></textarea>
+                    </div>
+                  </div>
+                </div>
+                <div class="m-portlet__foot m-portlet__foot--fit">
+                  <div class="m-form__actions m-form__actions">
+                    <div class="row">
+                      <div class="col-lg-9 ml-lg-auto">
+                        <button type="submit" [disabled]="name.invalid" class="btn btn-brand">
+                            <i *ngIf="loading" class="fa fa-spinner fa-spin"></i>
+                          Submit
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <!--end::Form-->
+          </div>
+          <!--end::Portlet-->
+        </div>
+
