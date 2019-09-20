@@ -201,10 +201,9 @@
         <th scope="col">Description</th>
         <th scope="col">Category</th>
         <th scope="col">Qty</th>
-        <th scope="col">Reorder Qty</th>
-        <th scope="col">Tag</th>
+        <th scope="col">Reorder</th>
         <th scope="col">Status</th>
-        <th scope="col">Created At</th>
+        <th scope="col">Date</th>
         <th scope="col">Created By</th>
         <th scope="col">Action</th>
       </tr>
@@ -212,25 +211,25 @@
       <tbody>
       <tr *ngFor="let item of itemList">
         <td scope="row">{{item.secret.name}}</td>
-        <td><ngb-highlight [result]="item.secret.description" [term]="filter.value"></ngb-highlight></td>
+        <td><ngb-highlight [result]="(item.secret.description.length>20)?(item.secret.description | slice:0:20)+'...':(item.secret.description)" [term]="filter.value"></ngb-highlight></td>
         <td><ngb-highlight [result]="item.category.secret.name" [term]="filter.value"></ngb-highlight></td>
         <td><ngb-highlight [result]="item.secret.quantity" [term]="filter.value"></ngb-highlight></td>
         <td><ngb-highlight [result]="item.secret.reorder_level" [term]="filter.value"></ngb-highlight></td>
-        <td><ngb-highlight [result]="item.tag" [term]="filter.value"></ngb-highlight></td>
         <td><ngb-highlight [result]="item.approval_status" [term]="filter.value" [ngClass]="(item.approval_status === 'pending') ? 'primary' : (item.approval_status === 'declined') ? 'declined' : 'approved'"></ngb-highlight></td>
         <td><ngb-highlight [result]="item.createdAt | date" [term]="filter.value"></ngb-highlight></td>
         <td><ngb-highlight [result]="item.userId" [term]="filter.value"></ngb-highlight></td>
         <td>
-          <span class="action-span" style="width:50px">
-            <i style="cursor: pointer;"
-                class="icon fa fa-trash fa-1.5x text-danger"
-                placement="auto" ngbTooltip="Delete item"
-                id="deleteInflowCat"></i>
-
-            <i style="margin-left: 30px; cursor: pointer;"
-                class="icon fa fa-pencil fa-1.5x text-info"
-                placement="auto" ngbTooltip="Edit item" id="editInflowCategory"></i>
-          </span>
+          <div class="dropdown remove-caret" placement="left-top" ngbDropdown>
+            <button id="drop-view" type="button" class="btn btn-secondary py-1 px-2"
+                ngbDropdownToggle><i class="ion-ios-more"></i></button>
+            <div class="dropdown-menu py-0" role="menu" ngbDropdownMenu>
+              <button (click)="updateItem(item)"
+              class="dropdown-item py-2" id="deleteItem">Edit Item</button>
+              <div class="dropdown-divider my-0"></div>
+              <button class="dropdown-item py-2" type="button"
+                id="deleteItem">Delete Item</button>
+            </div>
+          </div>
         </td>
       </tr>
       </tbody>

@@ -46,4 +46,12 @@ export class DashboardService {
     const params = new HttpParams().set('offset', offset).set('limit', limit);
     return this.http.get<any>(`${this.url}/item`, this.appendAuthHeader());
   }
+
+  updateItem(data: any, id: string) {
+    return this.http.put<any>(`${this.url}/item/${id}`, data, this.appendAuthHeader());
+  }
+
+  getOneItem(id: string) {
+    return this.http.get<any>(`${this.url}/item/${id}`, this.appendAuthHeader());
+  }
 }

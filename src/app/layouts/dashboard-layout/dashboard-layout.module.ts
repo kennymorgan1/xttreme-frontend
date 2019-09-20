@@ -14,6 +14,7 @@ import { CreateCategoryComponent } from 'src/app/pages/category/create-category/
 import { ItemsComponent } from 'src/app/pages/items/items.component';
 import { CreateItemComponent } from 'src/app/pages/items/create-item/create-item.component';
 import { ToastrModule } from 'ng6-toastr-notifications';
+import { UpdateItemComponent } from 'src/app/pages/items/update-item/update-item.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { ToastrModule } from 'ng6-toastr-notifications';
     UpdateCategoryComponent,
     ItemsComponent,
     CreateItemComponent,
+    UpdateItemComponent,
   ],
   imports: [
     CommonModule,

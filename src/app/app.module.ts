@@ -17,14 +17,12 @@ import { JwtInterceptor } from './core/interceptors/interceptor.jwt';
 import { DashboardService } from './service/dashboard.service';
 import { ToastrModule } from 'ng6-toastr-notifications';
 import { DecimalPipe } from '@angular/common';
-import { UpdateItemComponent } from './pages/items/update-item/update-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardLayoutComponent,
     AuthLayoutComponent,
-    UpdateItemComponent,
   ],
   imports: [
     BrowserModule,

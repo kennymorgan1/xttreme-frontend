@@ -23,10 +23,10 @@ export class CreateItemComponent implements OnInit {
 
   ngOnInit() {
     this.itemFormField();
-    this.getLiability(this.offset, this.limit);
+    this.getCategories(this.offset, this.limit);
   }
 
-  getLiability(offset, limit) {
+  getCategories(offset, limit) {
     this.service.listCategories(offset, limit).subscribe((data: any) => {
       if (data) {
         this.categoryList = data.data;

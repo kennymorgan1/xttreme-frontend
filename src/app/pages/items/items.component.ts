@@ -4,6 +4,7 @@ import { FormControl } from '@angular/forms';
 import { DashboardService } from 'src/app/service/dashboard.service';
 import { DecimalPipe } from '@angular/common';
 import { startWith, map } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
 
 function search(text: string, pipe: PipeTransform, COUNTRIES): any[] {
   return COUNTRIES.filter(country => {
@@ -25,7 +26,10 @@ export class ItemsComponent implements OnInit {
   tableValue: string;
   offset = 0;
   limit = 10;
-  constructor(private service: DashboardService, pipe: DecimalPipe) {
+  constructor(
+    private service: DashboardService,
+    pipe: DecimalPipe,
+    private route: Router) {
     // this.itemList = this.filter.valueChanges.pipe(
     //   startWith(''),
     //   map(text => search(text, pipe, this.itemList))
@@ -35,6 +39,11 @@ export class ItemsComponent implements OnInit {
   ngOnInit() {
     this.getItems(this.offset, this.limit);
   }
+
+  updateItem(content) {
+    this.route.navigate(['/update-item', content._id]);
+  }
+
 
   getItems(offset, limit) {
     this.service.listItems(offset, limit).subscribe((data: any) => {
