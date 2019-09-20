@@ -27,6 +27,9 @@ export class CategoryComponent implements OnInit {
   tableValue: string;
   offset = 0;
   limit = 10;
+  page = 1;
+  pageSize = 4;
+  collectionSize;
   constructor(private service: DashboardService, pipe: DecimalPipe, private route: Router) {
     // this.categoryList = this.filter.valueChanges.pipe(
     //   startWith(''),
@@ -55,6 +58,7 @@ export class CategoryComponent implements OnInit {
     this.service.listCategories(offset, limit).subscribe((data: any) => {
       if (data) {
         this.categoryList = data.data;
+        this.collectionSize = this.categoryList.length;
       }
       if (data.data.length === 0) {
         this.tableValue = 'hasNoValue';
@@ -62,6 +66,12 @@ export class CategoryComponent implements OnInit {
         this.tableValue = 'hasValue';
       }
     });
+  }
+
+  get categories(): any[] {
+    return this.categoryList
+      .map((category, i) => ({id: i + 1, ...category}))
+      .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
 
 }

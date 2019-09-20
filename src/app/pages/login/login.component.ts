@@ -73,6 +73,7 @@ export class LoginComponent implements OnInit {
   forgetPassword() {
     if (this.forgetPasswordForm.valid) {
         const email: string = this.forgetEmail.value;
+        console.log(email);
         this.getDisableBtn(true);
         this.authSrv.forgetPassword(email).subscribe(
           (data: any) => {
