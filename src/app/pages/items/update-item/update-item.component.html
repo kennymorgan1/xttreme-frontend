@@ -1,0 +1,106 @@
+
+        <div class="m-content">
+            <!--begin::Portlet-->
+            <div class="m-portlet">
+              <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                  <div class="m-portlet__head-title">
+                    <h3 class="m-portlet__head-text">
+                      Update {{itemName}}
+                    </h3>
+                  </div>
+                </div>
+              </div>
+              <div class="text-center" *ngIf="!(itemData)">
+                <div class="loading-tab">
+                  <h5 id="pls-wait"><i class="fa fa-spinner fa-spin fa-1x"></i> Please Wait</h5>
+                </div>
+              </div>
+              <!--begin::Form-->
+              <div *ngIf="itemData">
+                <form [formGroup]="itemForm" (ngSubmit)="onSubmit()" class="m-form m-form--fit m-form--label-align-right">
+                  <div class="m-portlet__body">
+                    <div class="form-group m-form__group row">
+                      <label for="name" class="col-form-label col-lg-3 col-sm-12">
+                        Name
+                      </label>
+                      <div class="col-lg-5 col-md-7 col-sm-12">
+                        <input [formControl]="itemForm.controls['name']" type="text" class="form-control m-input" id="name" aria-describedby="emailHelp" placeholder="Enter item name">
+                      </div>
+                      <div class="invalid-feedback" role="alert" *ngIf="itemForm.controls['name'].invalid && itemForm.controls['name'].touched">
+                        <span *ngIf="itemForm.controls['name'].errors.required">Name is required</span>
+                      </div>
+                    </div>
+                    <div class="form-group m-form__group row">
+                      <label for="description" class="col-form-label col-lg-3 col-sm-12">
+                        Description
+                      </label>
+                      <div class="col-lg-5 col-md-7 col-sm-12">
+                        <textarea formControlName="description"  class="form-control m-input" name="description" id="description" rows=""></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group m-form__group row">
+                      <label for="category" class="col-form-label col-lg-3 col-sm-12">
+                        Category
+                      </label>
+                      <div class="col-lg-5 col-md-7 col-sm-12">
+                          <select formControlName="category"  class="form-control" id="exampleFormControlSelect1">
+                              <option selected [ngValue]="null">Choose Category</option>
+                              <option *ngFor="let category of categoryList"
+                                value="{{category._id}}">
+                                {{category.secret.name}}
+                              </option>
+                            </select>
+                      </div>
+                      <div class="invalid-feedback" role="alert" *ngIf="itemForm.controls['category'].invalid && itemForm.controls['category'].touched">
+                          <span *ngIf="itemForm.controls['category'].errors.required">Category is required</span>
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group row">
+                      <label for="quantity" class="col-form-label col-lg-3 col-sm-12">
+                        Quantity
+                      </label>
+                      <div class="col-lg-3 col-md-7 col-sm-12">
+                        <input formControlName="quantity"  type="number" class="form-control m-input" id="quantity" aria-describedby="emailHelp" placeholder="Enter quantity">
+                      </div>
+                    </div>
+                    <div class="form-group m-form__group row">
+                      <label for="tag" class="col-form-label col-lg-3 col-sm-12">
+                        Tag
+                      </label>
+                      <div class="col-lg-3 col-md-7 col-sm-12">
+                        <input formControlName="tag" type="text" class="form-control m-input" id="tag" aria-describedby="emailHelp" placeholder="Enter tag">
+                      </div>
+                    </div>
+                    <div class="form-group m-form__group row">
+                      <label for="reorderLevel" class="col-form-label col-lg-3 col-sm-12">
+                        Reorder Level
+                      </label>
+                      <div class="col-lg-3 col-md-7 col-sm-12">
+                        <input formControlName="reorderLevel"  type="number" class="form-control m-input" id="reorderLevel" aria-describedby="emailHelp" placeholder="Enter reorder level">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="m-portlet__foot m-portlet__foot--fit">
+                    <div class="m-form__actions m-form__actions">
+                      <div class="row">
+                        <div class="col-lg-9 ml-lg-auto">
+                          <button type="submit" [disabled]="getDisableState" class="btn btn-brand">
+                            <i *ngIf="disableBtn" class="fa fa-spinner fa-spin"></i>
+                            Submit
+                          </button>
+                          &nbsp;&nbsp;
+                          <button [routerLink]="['/item']" class="btn btn-outline-focus">
+                            Cancel
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <!--end::Form-->
+            </div>
+            <!--end::Portlet-->
+          </div>
+

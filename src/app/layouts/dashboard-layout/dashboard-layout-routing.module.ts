@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from 'src/app/pages/dashboard/dashboard.component';
 import { CreateCategoryComponent } from 'src/app/pages/category/create-category/create-category.component';
 import { CreateItemComponent } from 'src/app/pages/items/create-item/create-item.component';
+import { UpdateItemComponent } from 'src/app/pages/items/update-item/update-item.component';
 
 
 export const DashboardLayoutRoutes: Routes = [
@@ -25,6 +26,9 @@ export const DashboardLayoutRoutes: Routes = [
   },
   {
     path: 'create-item', component: CreateItemComponent
+  },
+  {
+    path: 'update-item/:itemId', component: UpdateItemComponent,
   }
 ];
 

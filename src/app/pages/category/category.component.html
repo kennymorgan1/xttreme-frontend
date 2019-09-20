@@ -160,17 +160,17 @@
                     <td><ngb-highlight [result]="category.createdAt | date" [term]="filter.value"></ngb-highlight></td>
                     <td><ngb-highlight [result]="category.userId" [term]="filter.value"></ngb-highlight></td>
                     <td>
-                        <div class="dropdown remove-caret" placement="left-top" ngbDropdown>
-                            <button id="drop-view" type="button" class="btn btn-secondary py-1 px-2"
-                                ngbDropdownToggle><i class="ion-ios-more"></i></button>
-                            <div class="dropdown-menu py-0" role="menu" ngbDropdownMenu>
-                                <button (click)="updateCategory(category)"
-                                class="dropdown-item py-2" id="editInflowCategory">Edit Category</button>
-                                <div class="dropdown-divider my-0"></div>
-                                <button class="dropdown-item py-2" type="button"
-                                  id="deleteInflowCat">Delete Category</button>
-                            </div>
+                      <div class="dropdown remove-caret" placement="left-top" ngbDropdown>
+                        <button id="drop-view" type="button" class="btn btn-secondary py-1 px-2"
+                            ngbDropdownToggle><i class="ion-ios-more"></i></button>
+                        <div class="dropdown-menu py-0" role="menu" ngbDropdownMenu>
+                            <button (click)="updateCategory(category)"
+                            class="dropdown-item py-2" id="editCategory">Edit Category</button>
+                            <div class="dropdown-divider my-0"></div>
+                            <button class="dropdown-item py-2" type="button"
+                              id="deleteCategory">Delete Category</button>
                         </div>
+                      </div>
                     </td>
                   </tr>
                   </tbody>
