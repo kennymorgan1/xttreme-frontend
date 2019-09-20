@@ -134,56 +134,58 @@
                       <h5 id="pls-wait"><i class="fa fa-spinner fa-spin fa-1x"></i> Please Wait</h5>
                   </div>
               </div>
-              <div *ngIf="categoryList && categoryList.length" class="m_datatable" id="local_data">
+              <div *ngIf="categoryList && categoryList.length" class="table-responsive" id="local_data">
                 <!-- <form>
                   <div class="form-group form-inline">
                       Full text search: <input class="form-control ml-2" type="text" [formControl]="filter"/>
                   </div>
                 </form> -->
 
-                <table class="table table-striped">
+                <table class="table table-hover">
                   <thead>
                   <tr>
                     <th scope="col">Name</th>
                     <th scope="col">Description</th>
                     <th scope="col">Status</th>
-                    <th scope="col">Created at</th>
+                    <th scope="col">Date</th>
                     <th scope="col">Created By</th>
+                    <th class="th-lg">Action</th>
                   </tr>
                   </thead>
                   <tbody>
                   <tr *ngFor="let category of categoryList">
                     <td scope="row">{{category.secret.name}}</td>
-                    <td><ngb-highlight [result]="category.secret.description" [term]="filter.value"></ngb-highlight></td>
+                    <td><ngb-highlight [result]="(category.secret.description.length>20)?(category.secret.description | slice:0:20)+'...':(category.secret.description)" [term]="filter.value"></ngb-highlight></td>
                     <td><ngb-highlight [result]="status(category.active)" [term]="filter.value" [ngClass]="(category.active === true) ? 'success' : (category.active === 'declined') ? 'declined' : 'approved'"></ngb-highlight></td>
                     <td><ngb-highlight [result]="category.createdAt | date" [term]="filter.value"></ngb-highlight></td>
                     <td><ngb-highlight [result]="category.userId" [term]="filter.value"></ngb-highlight></td>
                     <td>
-                      <span class="action-span" style="width:50px">
-                        <i style="cursor: pointer;"
-                            class="icon fa fa-trash fa-1.5x text-danger"
-                            placement="auto" ngbTooltip="Delete category"
-                            id="deleteInflowCat"></i>
-
-                        <i style="margin-left: 30px; cursor: pointer;" (click)="updateCategory(category)"
-                            class="icon fa fa-pencil fa-1.5x text-info"
-                            placement="auto" ngbTooltip="Edit category" id="editInflowCategory"></i>
-                      </span>
+                        <div class="dropdown remove-caret" placement="left-top" ngbDropdown>
+                            <button id="drop-view" type="button" class="btn btn-secondary py-1 px-2"
+                                ngbDropdownToggle><i class="ion-ios-more"></i></button>
+                            <div class="dropdown-menu py-0" role="menu" ngbDropdownMenu>
+                                <button (click)="updateCategory(category)"
+                                class="dropdown-item py-2" id="editInflowCategory">Edit Category</button>
+                                <div class="dropdown-divider my-0"></div>
+                                <button class="dropdown-item py-2" type="button"
+                                  id="deleteInflowCat">Delete Category</button>
+                            </div>
+                        </div>
                     </td>
                   </tr>
                   </tbody>
                 </table>
 
-                <!-- <div class="d-flex justify-content-between p-2">
+                <div class="d-flex justify-content-between p-2">
                   <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
                   </ngb-pagination>
 
                   <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
-                    <option [ngValue]="2">2 items per page</option>
-                    <option [ngValue]="4">4 items per page</option>
-                    <option [ngValue]="6">6 items per page</option>
+                    <option [ngValue]="10">10 items per page</option>
+                    <option [ngValue]="20">20 items per page</option>
+                    <option [ngValue]="30">30 items per page</option>
                   </select>
-                </div> -->
+                </div>
               </div>
               <!--end: Datatable -->
             </div>
