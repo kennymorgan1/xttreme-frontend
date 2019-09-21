@@ -54,4 +54,8 @@ export class DashboardService {
   getOneItem(id: string) {
     return this.http.get<any>(`${this.url}/item/${id}`, this.appendAuthHeader());
   }
+
+  getAuditTrail() {
+    return this.http.get<any>(`${this.url}/audit_trail`, this.appendAuthHeader());
+  }
 }

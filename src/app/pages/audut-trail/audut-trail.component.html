@@ -1,1 +1,73 @@
-<p>audut-trail works!</p>
+
+
+        <div class="m-content">
+            <div class="m-portlet m-portlet--mobile">
+              <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                  <div class="m-portlet__head-title">
+                    <h3 class="m-portlet__head-text">
+                      Activities
+                      <small>
+                        where items fall under
+                      </small>
+                    </h3>
+                  </div>
+                </div>
+              </div>
+              <div class="m-portlet__body">
+    <!--begin: Datatable -->
+                <div class="text-center" *ngIf="activityList && (activityList.length === 0)">
+                  <div class="loading-tab">
+                      <i class="fa fa-frown-o fa-2x text-secondary"></i><br />
+                      <h5 id="no-inflow-cat">No Activity Yet</h5>
+                  </div>
+                </div>
+                <div class="text-center" *ngIf="!(activityList)">
+                    <div class="loading-tab">
+                        <h5 id="pls-wait"><i class="fa fa-spinner fa-spin fa-1x"></i> Please Wait</h5>
+                    </div>
+                </div>
+                <div *ngIf="activityList && activityList.length" class="table-responsive" id="local_data">
+                  <!-- <form>
+                    <div class="form-group form-inline">
+                        Full text search: <input class="form-control ml-2" type="text" [formControl]="filter"/>
+                    </div>
+                  </form> -->
+                  <p>It works</p>
+                  <table class="table table-hover">
+                    <thead>
+                    <tr>
+                      <th scope="col">Item Name</th>
+                      <th scope="col">Description</th>
+                      <th scope="col">Action Type</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Created By</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let activity of activities">
+                      <td scope="row">{{activity.secret.newEntity.name}}</td>
+                      <td><ngb-highlight [result]="activity.secret.description" [term]="filter.value"></ngb-highlight></td>
+                      <td><ngb-highlight [result]="activity.secret.actionType" [term]="filter.value" ></ngb-highlight></td>
+                      <td><ngb-highlight [result]="activity.createdAt | date" [term]="filter.value"></ngb-highlight></td>
+                      <td><ngb-highlight [result]="activity.userId" [term]="filter.value"></ngb-highlight></td>
+                    </tr>
+                    </tbody>
+                  </table>
+
+                  <div class="d-flex justify-content-between p-2">
+                    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
+                    </ngb-pagination>
+
+                    <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
+                      <option [ngValue]="10">10 items per page</option>
+                      <option [ngValue]="20">20 items per page</option>
+                      <option [ngValue]="30">30 items per page</option>
+                    </select>
+                  </div>
+                </div>
+                <!--end: Datatable -->
+              </div>
+            </div>
+          </div>
+
