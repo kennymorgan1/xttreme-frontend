@@ -17,7 +17,7 @@ export class AuthServiceService {
 
   url = `${environment.baseUrl}/xttreme/auth`;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -33,6 +33,13 @@ export class AuthServiceService {
   login(data: LoginInterface) {
     return this.http.post<any>(`${this.url}/login`, data);
   }
+
+  logout(returnUrl?: string) {
+    // remove user from local storage to log user out
+    localStorage.removeItem('currentUser');
+    this.currentUserSubject.next(null);
+    this.router.navigate([returnUrl || '/login']);
+}
 
   resend(email: string) {
     const data = {email};

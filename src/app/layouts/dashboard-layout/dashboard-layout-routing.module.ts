@@ -7,6 +7,7 @@ import { CreateCategoryComponent } from 'src/app/pages/category/create-category/
 import { CreateItemComponent } from 'src/app/pages/items/create-item/create-item.component';
 import { UpdateItemComponent } from 'src/app/pages/items/update-item/update-item.component';
 import { AudutTrailComponent } from 'src/app/pages/audut-trail/audut-trail.component';
+import { UserManagementComponent } from 'src/app/pages/user-management/user-management.component';
 
 
 export const DashboardLayoutRoutes: Routes = [
@@ -33,6 +34,9 @@ export const DashboardLayoutRoutes: Routes = [
   },
   {
     path: 'audit-trail', component: AudutTrailComponent,
+  },
+  {
+    path: 'users', component: UserManagementComponent,
   }
 ];
 
