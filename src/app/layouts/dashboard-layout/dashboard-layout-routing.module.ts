@@ -8,6 +8,7 @@ import { CreateItemComponent } from 'src/app/pages/items/create-item/create-item
 import { UpdateItemComponent } from 'src/app/pages/items/update-item/update-item.component';
 import { AudutTrailComponent } from 'src/app/pages/audut-trail/audut-trail.component';
 import { UserManagementComponent } from 'src/app/pages/user-management/user-management.component';
+import { AdminGuard } from 'src/app/core/guard/admin.guard';
 
 
 export const DashboardLayoutRoutes: Routes = [
@@ -33,10 +34,10 @@ export const DashboardLayoutRoutes: Routes = [
     path: 'update-item/:itemId', component: UpdateItemComponent,
   },
   {
-    path: 'audit-trail', component: AudutTrailComponent,
+    path: 'audit-trail', component: AudutTrailComponent, canActivate: [AdminGuard]
   },
   {
-    path: 'users', component: UserManagementComponent,
+    path: 'users', component: UserManagementComponent, canActivate: [AdminGuard]
   }
 ];
 
