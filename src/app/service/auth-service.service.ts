@@ -66,6 +66,6 @@ export class AuthServiceService {
   }
 
   get isAdmin(): boolean {
-    return (this.currentUserValue.roles || []).indexOf('ADMIN') > -1;
+    return this.currentUserValue.result.role;
   }
 }
