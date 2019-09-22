@@ -16,6 +16,7 @@ import { CreateItemComponent } from 'src/app/pages/items/create-item/create-item
 import { ToastrModule } from 'ng6-toastr-notifications';
 import { UpdateItemComponent } from 'src/app/pages/items/update-item/update-item.component';
 import { AudutTrailComponent } from 'src/app/pages/audut-trail/audut-trail.component';
+import { UserManagementComponent } from 'src/app/pages/user-management/user-management.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { AudutTrailComponent } from 'src/app/pages/audut-trail/audut-trail.compo
     CreateItemComponent,
     UpdateItemComponent,
     AudutTrailComponent,
+    UserManagementComponent,
   ],
   imports: [
     CommonModule,
