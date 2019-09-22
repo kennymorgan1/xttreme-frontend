@@ -4,6 +4,7 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-layout.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './core/guard/auth.guard';
 
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: './layouts/dashboard-layout/dashboard-layout.module#DashboardLayoutModule'
+        loadChildren: './layouts/dashboard-layout/dashboard-layout.module#DashboardLayoutModule',
+        canActivate: [AuthGuard]
       }
     ]
   },
