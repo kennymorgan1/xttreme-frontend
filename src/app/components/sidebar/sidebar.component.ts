@@ -37,12 +37,10 @@ export class SidebarComponent {
 
   auditTrailMenu() {
     if (this.authService.isAdmin) {
-      console.log('in here');
       return {
         path: '/audit-trail', title: 'Audit Trail', icon: 'm-menu__link-icon flaticon-layers', class: 'm-menu__ver-arrow la la-angle-right'
       };
     }
-    console.log('out here');
   }
 
   userManagementMenu() {
