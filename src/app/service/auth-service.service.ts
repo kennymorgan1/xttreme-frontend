@@ -60,4 +60,12 @@ export class AuthServiceService {
     const body = {password, id};
     return this.http.post<any>(`${this.url}/reset_password`, body);
   }
+
+  redirectToAccessDeniedPageWithData() {
+    this.router.navigate(AuthServiceService.accessDeniedRoute);
+  }
+
+  get isAdmin(): boolean {
+    return (this.currentUserValue.roles || []).indexOf('ADMIN') > -1;
+  }
 }

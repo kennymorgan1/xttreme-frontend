@@ -5,6 +5,7 @@ import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-l
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './core/guard/auth.guard';
+import { AccessDeniedComponent } from './core/access-denied.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,13 @@ const routes: Routes = [
     path: '',
     component: DashboardLayoutComponent,
     children: [
+      {
+        path: 'access-denied',
+        component: AccessDeniedComponent,
+        data: {
+          heading: 'Unauthorized Access'
+        },
+      },
       {
         path: '',
         loadChildren: './layouts/dashboard-layout/dashboard-layout.module#DashboardLayoutModule',
