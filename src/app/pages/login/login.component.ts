@@ -5,6 +5,7 @@ import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms'
 import { CustomValidators } from 'ng2-validation';
 import { LoginInterface, RegisterInterface } from 'src/app/interface/auth-interface';
 import Swal from 'sweetalert2';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -28,6 +29,7 @@ export class LoginComponent implements OnInit {
   disableBtn = false;
   responseErr;
   confirmEmailErr;
+  returnUrl: string;
 
   constructor(private route: ActivatedRoute,
               private fb: FormBuilder,
@@ -41,6 +43,7 @@ export class LoginComponent implements OnInit {
     this.loginFormField();
     this.registerFormFields();
     this.forgetPasswordFormField();
+    this.returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/dashboard';
   }
 
   goToLogin() {
@@ -70,6 +73,29 @@ export class LoginComponent implements OnInit {
   get loginEmail() { return this.loginForm.get('loginEmail'); }
   get loginPassword() { return this.loginForm.get('loginPassword'); }
 
+  login() {
+    if (this.loginForm.valid) {
+      const payload = {
+        username: this.loginEmail.value,
+        password: this.loginPassword.value
+      };
+      this.resetField();
+      this.getDisableBtn(true);
+      this.authSrv.login(payload).subscribe(
+        (data: any) => {
+        this.getDisableBtn(false);
+        this.router.navigateByUrl(this.returnUrl);
+      }, err => {
+        if (err.status === 400) {
+          // this.getSweetAlert('', 'warning' , err.error.data.msg, 'login');
+          this.loginErr = true;
+          this.loginErrorMsg = err.error.data.msg;
+        }
+        this.getDisableBtn(false);
+      });
+    }
+  }
+
   forgetPassword() {
     if (this.forgetPasswordForm.valid) {
         const email: string = this.forgetEmail.value;
@@ -88,31 +114,6 @@ export class LoginComponent implements OnInit {
             this.confirmEmailErr = err;
             this.disableBtn = false;
           });
-    }
-  }
-
-  login() {
-    if (this.loginForm.valid) {
-      const payload = {
-        username: this.loginEmail.value,
-        password: this.loginPassword.value
-      };
-      this.resetField();
-      this.getDisableBtn(true);
-      this.authSrv.login(payload).subscribe(
-        (data: any) => {
-        this.getDisableBtn(false);
-        localStorage.setItem('currentUser', JSON.stringify(data.data));
-        this.router.navigate(['/dashboard']);
-      }, err => {
-        console.log(err);
-        if (err.status === 400) {
-          // this.getSweetAlert('', 'warning' , err.error.data.msg, 'login');
-          this.loginErr = true;
-          this.loginErrorMsg = err.error.data.msg;
-        }
-        this.getDisableBtn(false);
-      });
     }
   }
 

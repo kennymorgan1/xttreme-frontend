@@ -31,14 +31,18 @@ export class AuthServiceService {
   }
 
   login(data: LoginInterface) {
-    return this.http.post<any>(`${this.url}/login`, data);
+    return this.http.post<any>(`${this.url}/login`, data).pipe(map(user => {
+      console.log(user.data);
+      if (user && user.data.tokenData.token) {
+        localStorage.setItem('currentUser', JSON.stringify(user.data));
+      }
+      return user;
+    }));
   }
 
-  logout(returnUrl?: string) {
+  logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
-    this.currentUserSubject.next(null);
-    this.router.navigate([returnUrl || '/login']);
 }
 
   resend(email: string) {

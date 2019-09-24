@@ -21,6 +21,10 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  dashboard() {
+    this.router.navigate(['/dashboard']);
+  }
+
   ngOnInit() {
   }
 
