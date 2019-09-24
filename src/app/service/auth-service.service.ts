@@ -16,10 +16,20 @@ export class AuthServiceService {
   public currentUser: Observable<User>;
 
   url = `${environment.baseUrl}/xttreme/auth`;
+  user;
 
   constructor(private http: HttpClient, private router: Router) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
+    this.user = JSON.parse(localStorage.getItem('currentUser'));
+  }
+
+  appendAuthHeader(): any {
+    return {
+      headers: {
+        Authorization: `Bearer ${this.user.tokenData.token}`
+      }
+    };
   }
 
   public get currentUserValue(): any {
@@ -32,7 +42,6 @@ export class AuthServiceService {
 
   login(data: LoginInterface) {
     return this.http.post<any>(`${this.url}/login`, data).pipe(map(user => {
-      console.log(user.data);
       if (user && user.data.tokenData.token) {
         localStorage.setItem('currentUser', JSON.stringify(user.data));
       }
@@ -63,6 +72,10 @@ export class AuthServiceService {
   resetPassword(password, id) {
     const body = {password, id};
     return this.http.post<any>(`${this.url}/reset_password`, body);
+  }
+
+  listUsers() {
+    return this.http.get<any>(`${this.url}/user/management`, this.appendAuthHeader());
   }
 
   redirectToAccessDeniedPageWithData() {
