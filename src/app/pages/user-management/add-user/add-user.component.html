@@ -1,1 +1,79 @@
-<p>add-user works!</p>
+
+        <div class="m-content">
+            <!--begin::Portlet-->
+            <div class="m-portlet">
+              <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                  <div class="m-portlet__head-title">
+                    <h3 class="m-portlet__head-text">
+                      Add Employee
+                    </h3>
+                  </div>
+                </div>
+              </div>
+              <!--begin::Form-->
+              <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="m-form m-form--fit m-form--label-align-right">
+                <div class="m-portlet__body">
+                  <div class="form-group m-form__group row">
+                    <label for="firstName" class="col-form-label col-lg-3 col-sm-12">
+                      First Name
+                    </label>
+                    <div class="col-lg-5 col-md-7 col-sm-12">
+                      <input formControlName="firstName" type="text" class="form-control m-input" id="firstName" placeholder="Enter item firstName">
+                    </div>
+                    <div class="invalid-feedback" role="alert" *ngIf="firstName.invalid && firstName.touched">
+                      <span *ngIf="firstName.errors.required">First Name is required</span>
+                    </div>
+                  </div>
+                  <div class="form-group m-form__group row">
+                    <label for="lastName" class="col-form-label col-lg-3 col-sm-12">
+                      Last Name
+                    </label>
+                    <div class="col-lg-5 col-md-7 col-sm-12">
+                      <input formControlName="lastName" type="text" class="form-control m-input" id="lastName" placeholder="Enter item lastName">
+                    </div>
+                    <div class="invalid-feedback" role="alert" *ngIf="lastName.invalid && lastName.touched">
+                      <span *ngIf="lastName.errors.required">Last Name is required</span>
+                    </div>
+                  </div>
+                  <div class="form-group m-form__group row">
+                    <label for="email" class="col-form-label col-lg-3 col-sm-12">
+                      Email
+                    </label>
+                    <div class="col-lg-5 col-md-7 col-sm-12">
+                      <input formControlName="email" type="text" class="form-control m-input" id="email" placeholder="Enter item email">
+                    </div>
+                    <div class="invalid-feedback" role="alert" *ngIf="email.invalid && email.touched">
+                      <span *ngIf="email.errors.required">Email is required</span>
+                    </div>
+                  </div>
+                  <div class="form-group m-form__group row">
+                      <label for="Password" class="col-form-label col-lg-3 col-sm-12">
+                      Password
+                    </label>
+                    <div class="col-lg-5 col-md-7 col-sm-12">
+                      <input formControlName="Password" type="text" class="form-control m-input" id="Password" placeholder="Enter item Password">
+                    </div>
+                    <div class="invalid-feedback" role="alert" *ngIf="Password.invalid && Password.touched">
+                      <span *ngIf="Password.errors.required">First Name is required</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="m-portlet__foot m-portlet__foot--fit">
+                  <div class="m-form__actions m-form__actions">
+                    <div class="row">
+                      <div class="col-lg-9 ml-lg-auto">
+                        <button type="submit" [disabled]="getDisableState" class="btn btn-brand">
+                          <i *ngIf="disableBtn" class="fa fa-spinner fa-spin"></i>
+                          Submit
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <!--end::Form-->
+            </div>
+            <!--end::Portlet-->
+          </div>
+

@@ -210,19 +210,7 @@
         <td><ngb-highlight [result]="user.secret.lastName" [term]="filter.value"></ngb-highlight></td>
         <td><ngb-highlight [result]="user.secret.email" [term]="filter.value"></ngb-highlight></td>
         <td><ngb-highlight [result]="user.createdAt | date" [term]="filter.value"></ngb-highlight></td>
-        <td>
-          <div class="dropdown remove-caret" placement="left-top" ngbDropdown>
-            <button id="drop-view" type="button" class="btn btn-secondary py-1 px-2"
-                ngbDropdownToggle><i class="ion-ios-more"></i></button>
-            <div class="dropdown-menu py-0" role="menu" ngbDropdownMenu>
-              <button (click)="updateItem(item)"
-              class="dropdown-item py-2" id="deleteItem">Edit Item</button>
-              <div class="dropdown-divider my-0"></div>
-              <button class="dropdown-item py-2" type="button"
-                id="deleteItem">Delete Item</button>
-            </div>
-          </div>
-        </td>
+        <td>View</td>
       </tr>
       </tbody>
     </table>
