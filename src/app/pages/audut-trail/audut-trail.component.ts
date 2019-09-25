@@ -25,7 +25,8 @@ export class AudutTrailComponent implements OnInit {
   }
 
   open(content) {
-    this.modalService.open(content);
+    console.log(content);
+    // this.modalService.open(content);
   }
 
   getActivities() {

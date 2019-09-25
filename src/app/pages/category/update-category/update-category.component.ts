@@ -36,7 +36,7 @@ export class UpdateCategoryComponent implements OnInit {
   getOneCategory() {
     this.service.getOneCategory(this.categoryId).subscribe(
       (data: any) => {
-        this.categoryData = data.data[0];
+        this.categoryData = data.data;
         this.categoryName = this.categoryData.secret.name;
       });
   }

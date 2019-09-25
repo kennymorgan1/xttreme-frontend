@@ -40,7 +40,7 @@ export class UpdateItemComponent implements OnInit {
     this.service.getOneItem(this.itemId).subscribe((data: any) => {
       if (data) {
         this.itemData = data.data;
-        console.log(this.itemData.category.secret.name);
+        this.itemName = this.itemData.secret.name;
 
         this.itemFormField();
       }

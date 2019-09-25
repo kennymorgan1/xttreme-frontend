@@ -33,7 +33,6 @@
                         Full text search: <input class="form-control ml-2" type="text" [formControl]="filter"/>
                     </div>
                   </form> -->
-                  <p>It works</p>
                   <table class="table table-hover">
                     <thead>
                     <tr>
@@ -45,7 +44,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="clickable" *ngFor="let activity of activities" (click)="open(content)">
+                    <tr class="clickable" *ngFor="let activity of activities" (click)="open(activity)">
                       <td scope="row">{{activity.secret.newEntity.name}}</td>
                       <td><ngb-highlight [result]="activity.secret.description" [term]="filter.value"></ngb-highlight></td>
                       <td><ngb-highlight [result]="activity.secret.actionType" [term]="filter.value" ></ngb-highlight></td>

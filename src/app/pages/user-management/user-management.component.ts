@@ -1,4 +1,6 @@
+import { AuthServiceService } from './../../service/auth-service.service';
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-user-management',
@@ -6,10 +8,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-management.component.scss']
 })
 export class UserManagementComponent implements OnInit {
-
-  constructor() { }
+  filter = new FormControl('');
+  users;
+  constructor(private service: AuthServiceService) { }
 
   ngOnInit() {
+    this.getUsers();
+  }
+
+  getUsers() {
+    this.service.listUsers().subscribe((data: any) => {
+      if (data) {
+        this.users = data.data;
+        console.log(data.data);
+
+      }
+    });
   }
 
 }

@@ -9,6 +9,7 @@ import { UpdateItemComponent } from 'src/app/pages/items/update-item/update-item
 import { AudutTrailComponent } from 'src/app/pages/audut-trail/audut-trail.component';
 import { UserManagementComponent } from 'src/app/pages/user-management/user-management.component';
 import { AdminGuard } from 'src/app/core/guard/admin.guard';
+import { AddUserComponent } from 'src/app/pages/user-management/add-user/add-user.component';
 
 
 export const DashboardLayoutRoutes: Routes = [
@@ -38,6 +39,9 @@ export const DashboardLayoutRoutes: Routes = [
   },
   {
     path: 'users', component: UserManagementComponent, canActivate: [AdminGuard]
+  },
+  {
+    path: 'add-user', component: AddUserComponent,
   }
 ];
 

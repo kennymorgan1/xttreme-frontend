@@ -14,7 +14,7 @@ import { ConfirmationComponent } from 'src/app/pages/confirmation/confirmation.c
   declarations: [
     LoginComponent,
     ConfirmationComponent,
-    ErrorComponent
+    ErrorComponent,
   ],
   imports: [
     FormsModule,

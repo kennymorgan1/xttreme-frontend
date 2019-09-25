@@ -15,7 +15,7 @@ export const AuthLayoutRoutes: Routes = [
     path: 'forget-password', component: LoginComponent
   },
   {
-    path: 'confirmation/:token',    component: ConfirmationComponent
+    path: 'confirmation/:token', component: ConfirmationComponent
   },
   {
     path: '**', component: ErrorComponent
