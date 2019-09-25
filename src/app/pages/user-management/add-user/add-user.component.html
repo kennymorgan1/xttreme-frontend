@@ -52,10 +52,10 @@
                       Password
                     </label>
                     <div class="col-lg-5 col-md-7 col-sm-12">
-                      <input formControlName="Password" type="text" class="form-control m-input" id="Password" placeholder="Enter item Password">
+                      <input formControlName="password" type="text" class="form-control m-input" id="password" placeholder="Enter item password">
                     </div>
-                    <div class="invalid-feedback" role="alert" *ngIf="Password.invalid && Password.touched">
-                      <span *ngIf="Password.errors.required">First Name is required</span>
+                    <div class="invalid-feedback" role="alert" *ngIf="password.invalid && password.touched">
+                      <span *ngIf="password.errors.required">Password is required</span>
                     </div>
                   </div>
                 </div>
