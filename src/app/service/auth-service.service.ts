@@ -78,6 +78,10 @@ export class AuthServiceService {
     return this.http.get<any>(`${this.url}/user/management`, this.appendAuthHeader());
   }
 
+  addUser(data: any) {
+    return this.http.post<any>(`${this.url}/add/user`, data, this.appendAuthHeader());
+  }
+
   redirectToAccessDeniedPageWithData() {
     this.router.navigate(AuthServiceService.accessDeniedRoute);
   }
