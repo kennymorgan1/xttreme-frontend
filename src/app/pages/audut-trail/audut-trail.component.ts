@@ -25,7 +25,6 @@ export class AudutTrailComponent implements OnInit {
   }
 
   open(content) {
-    console.log(content);
     // this.modalService.open(content);
   }
 
@@ -33,6 +32,7 @@ export class AudutTrailComponent implements OnInit {
     this.service.getAuditTrail().subscribe((data: any) => {
       if (data) {
         this.activityList = data.data;
+
         this.collectionSize = this.activityList.length;
       }
     });
