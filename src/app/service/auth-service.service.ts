@@ -87,6 +87,9 @@ export class AuthServiceService {
   }
 
   get isAdmin(): boolean {
-    return this.currentUserValue.result.role;
+    if (this.currentUserValue && (this.currentUserValue.result.role === 'admin')) {
+      return true;
+    }
+    return false;
   }
 }

@@ -200,6 +200,7 @@
         <th scope="col">First Name</th>
         <th scope="col">Last Name</th>
         <th scope="col">Email</th>
+        <th scope="col">Role</th>
         <th scope="col">Date</th>
         <th scope="col"></th>
       </tr>
@@ -209,6 +210,7 @@
         <td scope="row">{{user.secret.firstName}}</td>
         <td><ngb-highlight [result]="user.secret.lastName" [term]="filter.value"></ngb-highlight></td>
         <td><ngb-highlight [result]="user.secret.email" [term]="filter.value"></ngb-highlight></td>
+        <td><ngb-highlight [result]="user.role" [term]="filter.value"></ngb-highlight></td>
         <td><ngb-highlight [result]="user.createdAt | date" [term]="filter.value"></ngb-highlight></td>
         <td>View</td>
       </tr>

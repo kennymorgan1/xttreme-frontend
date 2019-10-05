@@ -38,6 +38,7 @@
                     <tr>
                       <th scope="col">Item Name</th>
                       <th scope="col">Description</th>
+                      <th scope="col">Record Type</th>
                       <th scope="col">Action Type</th>
                       <th scope="col">Date</th>
                       <th scope="col">Created By</th>
@@ -47,6 +48,7 @@
                     <tr class="clickable" *ngFor="let activity of activities" (click)="open(activity)">
                       <td scope="row">{{activity.secret.newEntity.name}}</td>
                       <td><ngb-highlight [result]="activity.secret.description" [term]="filter.value"></ngb-highlight></td>
+                      <td><ngb-highlight [result]="activity.schemaName" [term]="filter.value" ></ngb-highlight></td>
                       <td><ngb-highlight [result]="activity.secret.actionType" [term]="filter.value" ></ngb-highlight></td>
                       <td><ngb-highlight [result]="activity.createdAt | date" [term]="filter.value"></ngb-highlight></td>
                       <td><ngb-highlight [result]="activity.userId" [term]="filter.value"></ngb-highlight></td>
