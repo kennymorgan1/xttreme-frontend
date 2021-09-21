@@ -58,7 +58,7 @@
     "ngx-highlightjs": "^3.0.3",
     "ngx-perfect-scrollbar": "^7.2.1",
     "ngx-permissions": "^6.0.5",
-    "object-path": "^0.11.4",
+    "object-path": "^0.11.8",
     "path": "^0.12.7",
     "rxjs": "~6.4.0",
     "sweetalert2": "^8.14.0",
